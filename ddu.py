@@ -29,16 +29,28 @@ def load_word_list():
             lst.append(line.strip())
     return lst
 
-def lod_words(n_dicts=3, n_keyvals=3):
-    """Create a List of n_dicts Dictionaries (LOD). The Dictionaries have
-    keys that are incrementing integers and values that are words chosen
-    randomly from a word list. There are n_keyvals key/value pairs in each
-    Dictionary."""
+def lod_words(n_dicts=3, keyvals=3):
+    """Create a List of Dictionaries (LOD) with number of Dictionaries equal
+    to n_dicts. Argument keyvals determines how many entries will be in each
+    Dictionary and what the keys are. If keyvals is an integer, the keys will
+    be incrementing integers from 0 to keyvals - 1, inclusive. If keyvals is a
+    set, tuple or list then the keys will be the elements of keyvals (the elements
+    must be unique). The values of each Dictionary will be words chosen randomly 
+    from a word list."""
     # TODO add a kwarg takes list of keys so user could provide own keys
     word_list = load_word_list()
     lod = []
     for x in range(n_dicts):
+        # Lambda function returns list element at random index
         rand_word = lambda wl: wl[random.randint(0, len(wl) - 1)]
-        d = {index: rand_word(word_list) for index in range(n_keyvals)}
+
+        # Create dictionary according to keyvals argument type
+        if type(keyvals) is int:
+            d = {index: rand_word(word_list) for index in range(keyvals)}
+        elif type(keyvals) in {tuple, set, list}:
+            d = {key: rand_word(word_list) for key in keyvals}
+        else:
+            raise TypeError
         lod.append(d)
+
     return lod
