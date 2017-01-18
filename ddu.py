@@ -34,6 +34,7 @@ def lod_words(n_dicts=3, n_keyvals=3):
     keys that are incrementing integers and values that are words chosen
     randomly from a word list. There are n_keyvals key/value pairs in each
     Dictionary."""
+    # TODO add a kwarg takes list of keys so user could provide own keys
     word_list = load_word_list()
     lod = []
     for x in range(n_dicts):
