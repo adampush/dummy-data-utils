@@ -9,10 +9,3 @@ It is very small as of 2017 jan 18 wed because I just started it.
 
 It will probably change drastically and at an unpredictable rate (slow, fast,
 ludicrous speed).
-
-Testing out to see if autodoc works on github...
-
-.. automodule ddu
-    :members:
-
-end test...
