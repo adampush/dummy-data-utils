@@ -54,3 +54,11 @@ def lod_words(n_dicts=3, keyvals=3):
         lod.append(d)
 
     return lod
+
+def search_lod_for_key_val(key, value, lod):
+    """Search a List of Dictionaries (LOD) for a key/value pair and return a 
+    generator object that contains dictionaries that match. This function
+    is kind of pointless because the function signature is more characters
+    in length than the generator-creating expression that it executes, but
+    maybe it is a little more readable."""
+    return (d for d in lod if d[key] == value)
