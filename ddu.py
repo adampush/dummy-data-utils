@@ -61,4 +61,16 @@ def search_lod_for_key_val(key, value, lod):
     is kind of pointless because the function signature is more characters
     in length than the generator-creating expression that it executes, but
     maybe it is a little more readable."""
-    return (d for d in lod if d[key] == value)
+    return [d for d in lod if d[key] == value]
+
+def make_lod_num_same_key_val(num, key, value, lod):
+    """Set a key/value pair to be the same for some number of Dictionaries 
+    in a given List of Dictionaries (LOD). The provided List of Dictionaries
+    is not modified -- a copy of the provided LOD is operated upon internal
+    to this function and that copy is returned."""
+    newlod = list(lod)
+    for index in {random.randint(0, len(newlod) - 1) for x in range(num)}:
+        d = dict(newlod[index])
+        d[key] = value
+        newlod[index] = d
+    return newlod
